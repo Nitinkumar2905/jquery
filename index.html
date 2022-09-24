@@ -1,36 +1,55 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RCG-starwars</title>
-</head>
-<body>
-
-   
-  <h1 class="name"></h1>
-  <button>Generate Character</button>
-  <img src="" class="character-img" alt="">
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RCG-StarWars-api</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="flex flex-col w-full items-center h-full bg-gray-800">
+        
+        <div class="font-sans m-4 bg-gray-800 py-1 px-3 rounded-md w-1/2 text-center text-gray-500 font-semibold text-lg sm:text-2xl border-b-2 border-gray-900">
+            This is a random character generator api..using rawcdn
+        </div>
+        <div class="font-sans m-4 bg-gray-800 py-1 px-3 rounded-md w-5/6 text-center text-gray-500 font-semibold  text-lg sm:text-1xl border-b-2 border-gray-900">
+           Some of character's info is not available...so there will be default tag(Name , Born , Death , Mass ,Image)
+        </div>
+        <button class="button border-b-2 border-gray-900 hover:border-gray-700 rounded-md focus:text-gray-300 hover:text-gray-200 bg-gray-600 hover:bg-gray-900 text-gray-400 font-medium font-sans text-lg py-1 px-3">Generate character </button>
+        <section class="flex flex-row justify-center w-1/2 space-x-10 my-12">
+            <section class="flex flex-col w-1/3 items-start">
+                
+                <div class="name text-gray-400 font-sans font-medium text-md sm:text-xl pb-2">Name :</div>
+                <div class="birth text-gray-400 font-sans font-bold text-md sm:text-xl">Born :</div>
+                <div class="death text-gray-400 font-sans font-bold text-md sm:text-xl">Death :</div>
+                <div class="mass text-gray-400 font-sans font-bold text-md sm:text-xl">Mass :</div>
+            </section>
+             <div class="w-48 h-48 m-auto font-sans text-gray-400 font-bold text-md sm:text-lg"> Image :
+                <img  src="" class="character-img" alt="" />
+             </div>
+        </section>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <script>
-        $(document).ready(function(){
-            // jQuery in here
-            $("button").on("click",function() {
-                const randomNumber = Math.ceil(Math.random() * 88)
-                $.get(`https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${randomNumber}.json`,
-                function(data) {
-                    $("h1.name").text(data['name'])
-                    $(".character-img").attr("src",data['image'])
-                    console.log(data)
-                })
-            })
-        })
-        
+      $(document).ready(function () {
+        // jQuery in here
+        $("button").on("click", function () {
+          const randomNumber = Math.ceil(Math.random() * 88);
+          $.get(
+            `https://rawcdn.githack.com/akabab/starwars-api/0.2.1/api/id/${randomNumber}.json`,
+            function (data) {
+              $("div.name").text(data["name"]);
+              $("div.birth").text(data["born"]);
+              $("div.death").text(data['died'])
+              $("div.mass").text(data['mass']);
+              $(".character-img").attr("src", data["image"]);
+              console.log(data);
+            }
+          );
+        });
+      });
     </script>
-</body>
+  </body>
 </html>
